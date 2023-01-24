@@ -1,0 +1,16 @@
+{
+    "router": [
+        {
+            "path": "/",
+            "file": "index.ejs"
+        },
+        {
+            "path": "/index",
+            "file": "index.ejs"
+        },
+        {
+            "path": "assets",
+            "file": "public"
+        }
+    ]
+}
