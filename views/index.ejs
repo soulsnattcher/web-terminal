@@ -1,0 +1,38 @@
+<!doctype html>
+  <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src='index.js'></script>
+        <link rel='stylesheet' href='index.css'/>
+    </head>
+    <body>
+        <div id="terminal">
+            <div class='log'>
+                <textarea readonly id='log'></textarea>
+            </div>
+            <div class='terminalInput'>
+                <div id='prefix'></div><input id='terminalInput' placeholder='Komut giriniz...'/>
+            </div>
+        </div>
+        <script>
+            try{
+                var term = new Terminal('$> ')
+                .onCommandUsed((command) => {
+                    term.runCommand(term.getCommand(command), term.getArgs(command));
+                }).addCommand({
+                    cmd: "clear",
+                    callback: (command, args) => {
+                        term.clear();
+                    }
+                }).addCommand({
+                    cmd: 'eval',
+                    callback: (command, args) => {
+                        eval(args.join(' '));
+                    }
+                }).enabled().start();
+            }catch(e){
+                alert(e);
+            }
+        </script>
+    </body>
+  </html>
